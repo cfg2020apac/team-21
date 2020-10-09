@@ -1,7 +1,6 @@
 import React from 'react';
 import About from './about/About';
 import Dashboard from './dashboard/Dashboard';
-
 import Home from './home/Home';
 import Chat from './chat/Chat';
 import Admin from './admin/Admin';
@@ -9,6 +8,7 @@ import AdminDashboard from './admin/Dashboard';
 import AdminVolunteer from './admin/Volunteer';
 import Volunteer from './volunteer/Volunteer';
 import Ngo from './ngo/ngo';
+import Registration from './registration/Registration';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 import {
@@ -43,7 +43,9 @@ export default class Main extends React.Component {
                     <Route exact path="/">
                         <Home />
                     </Route>
-
+                    <Route path="/registration">
+                        <Registration />
+                    </Route>
                     <Route path="/about">
                         <About />
                     </Route>
