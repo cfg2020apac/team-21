@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-import './chat.css'
+import './ngo.css'
+import axios from 'axios'
 
-export default function Chat() {
-    return (
+export default function Admin() {
+    const [events, setEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState({ "id": "", "location": "","start_date":"" ,"status":""})
+    useEffect(async () => {
+        const result = await axios.get(
+            'http://localhost:8000/event',
+        );
+
+        console.log(result.data)
+        setEvents(result.data)
+    }, []);
+    // function form_display(){
+    //     document.getElementById("chat-box").hidden;
+    // }
+     return (
 
         <div className="row">
             <div className="col-sm-1 px-0" style={{ 'maxWidth': '90px' }}>
@@ -42,11 +56,14 @@ export default function Chat() {
                                 <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                                     <div className="media-body ml-4">
                                         <div className="d-flex align-items-center justify-content-between mb-1">
-                                            <h6 className="mb-0">Jason Doe</h6><small className="small font-weight-bold">25 Dec</small>
+                                            <h6 className="mb-0">Hi! There</h6><small className="small font-weight-bold">25 Dec</small>
                                         </div>
-                                        <p className="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                        <p className="font-italic mb-0 text-small">The below event list is sorted based on the status criteria!</p>
                                     </div>
                                 </div>
+                            </a>
+                            <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
+                            <button type="button" class="btn btn-primary" >Add Event +</button>
                             </a>
                             <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
                                 <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
@@ -58,7 +75,18 @@ export default function Chat() {
                                     </div>
                                 </div>
                             </a>
-
+                            {events.map(e =>
+                                <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" onClick={() => setSelectedEvent(e)}>
+                                    <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                                        <div className="media-body ml-4">
+                                            <div className="d-flex align-items-center justify-content-between mb-1">
+                            <h6 className="mb-0">{e.location}</h6><small className="small font-weight-bold">{e.start_date}</small>
+                                            </div>
+                                            <p className="font-italic text-muted mb-0 text-small">Status: {e.status}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            )}
 
 
                         </div>
@@ -66,9 +94,20 @@ export default function Chat() {
                 </div>
             </div>
             {/* Chat Box*/}
-            <div className="col-sm-8" >
+            <div className="col-sm-8" id="chat-box">
                 <div className="px-4 py-5 chat-box bg-white navbar" style={{ 'height': '100vh' }}>
-                    {/* Sender Message*/}
+
+
+                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                        <div className="media-body mr-3">
+                            <div className="bg-light rounded py-2 px-3 mb-2">
+                            <p className="text-small mb-0 text-muted">Event Location: {selectedEvent.location}</p>
+                            <p className="text-small mb-0 text-muted">Start Date: {selectedEvent.start_date}</p>
+                            <p className="text-small mb-0 text-muted">Status: {selectedEvent.status}</p>
+                            </div>
+
+                        </div>
+                    </div>
                     <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                         <div className="media-body ml-3">
                             <div className="bg-light rounded py-2 px-3 mb-2">
@@ -95,24 +134,7 @@ export default function Chat() {
                             <p className="small text-muted">12:00 PM | Aug 13</p>
                         </div>
                     </div>
-                    {/* Reciever Message*/}
-                    <div className="media w-50 ml-auto mb-3">
-                        <div className="media-body">
-                            <div className="bg-primary rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-                            </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    {/* Sender Message*/}
-                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
-                        <div className="media-body ml-3">
-                            <div className="bg-light rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-muted">Test, which is a new approach</p>
-                            </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
+                    
                     {/* Reciever Message*/}
                     <div className="media w-50 ml-auto mb-3">
                         <div className="media-body">

@@ -3,6 +3,9 @@ import About from './about/About';
 import Dashboard from './dashboard/Dashboard';
 import Home from './home/Home';
 import Chat from './chat/Chat';
+import Admin from './admin/Admin';
+import Volunteer from './volunteer/Volunteer';
+import Ngo from './ngo/ngo';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 import {
@@ -41,9 +44,20 @@ export default class Login extends React.Component {
                     <Route path="/chat">
                         <Chat />
                     </Route>
+                    <Route path="/volunteer">
+                        <Volunteer />
+                    </Route>
                     <Route path="/dashboard">
                         <Dashboard />
                     </Route>
+                    <Route path="/admin">
+                        <Admin />
+                    </Route>
+
+                    <Route path="/ngo">
+                        <Ngo />
+                    </Route>
+
                 </Switch>
 
             </div>
