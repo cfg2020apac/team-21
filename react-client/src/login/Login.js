@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './login.css'
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 export default function Login() {
-
-
+    const [path, setPath] = useState('');
+    useEffect(async () => {
+        setPath('')
+    },[]);
     return (
         <Router>
             <div>
@@ -27,26 +29,26 @@ export default function Login() {
                                     <input type="password" className="form-control" placeholder="Password" />
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="volunteer" value="volunteer" />
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="volunteer" value="volunteer" onClick={() => {setPath('/volunteer')}}/>
                                     <label class="form-check-label" for="volunteer">
                                         Volunteer
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="ngo" value="ngo" />
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="ngo" value="ngo" onClick={() => {setPath('/ngo')}}/>
                                     <label class="form-check-label" for="ngo">
                                         NGO
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="admin" value="admin" />
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="admin" value="admin" onClick={() => {setPath('/admin')}}/>
                                     <label class="form-check-label" for="admin">
                                         Admin
                                     </label>
                                 </div>
-                                <button type="submit" className="btn btn-black mr-1">Login</button>
-                                <button type="submit" className="btn btn-secondary pink">Register</button>
-                                <Link to="/admin" component="a" className="item fa fa-cog fa-2x"></Link>
+                                <Link to={path} component="a" className="btn btn-primary pink">Login</Link>
+                                <Link to='/' component="a" className = "btn btn-seconary pink">Register</Link>
+                                {/*<Link to="/registration" component="a" className="btn btn-secondary pink">Register</Link>*/}
                             </form>
 
                         </div>
