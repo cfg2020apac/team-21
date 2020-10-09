@@ -10,7 +10,7 @@ import axios from 'axios'
 
 export default function Admin() {
     const [events, setEvents] = useState([]);
-
+    const [selectedEvent, setSelectedEvent] = useState({ "id": "", "ngo_name": "abc" })
     useEffect(async () => {
         const result = await axios.get(
             'http://localhost:8000/event',
@@ -70,11 +70,11 @@ export default function Admin() {
                                 </div>
                             </a>
                             {events.map(e =>
-                                <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" onClick={() => setSelectedEvent(e)}>
                                     <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                                         <div className="media-body ml-4">
                                             <div className="d-flex align-items-center justify-content-between mb-1">
-                                                <h6 className="mb-0">Jason Doe</h6><small className="small font-weight-bold">14 Dec</small>
+                                                <h6 className="mb-0">{e.id}</h6><small className="small font-weight-bold">14 Dec</small>
                                             </div>
                                             <p className="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
                                         </div>
@@ -91,6 +91,7 @@ export default function Admin() {
             <div className="col-sm-8" >
                 <div className="px-4 py-5 chat-box bg-white navbar" style={{ 'height': '100vh' }}>
                     {/* Sender Message*/}
+                    {selectedEvent.ngo_name}
                     <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                         <div className="media-body ml-3">
                             <div className="bg-light rounded py-2 px-3 mb-2">
