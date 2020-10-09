@@ -91,7 +91,7 @@ export default function Dashboard() {
                 <div class="col-sm-12">
                     <h2><VegaLite spec={spec} data={barData} /></h2>
                     <h2><VegaLite spec={spec} data={barData1} /></h2>
-                    <h2><VegaLite pie_spec={pie_spec} data={pieData} /></h2>
+                    <h2><VegaLite spec={pie_spec} data={pieData} /></h2>
                 </div>
             </div>
         </div>
