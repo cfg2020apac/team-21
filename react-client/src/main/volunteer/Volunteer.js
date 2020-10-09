@@ -16,7 +16,7 @@ export default function AdminVolunteer() {
 
     useEffect(async () => {
         const result = await axios.get(
-            'http://localhost:8000/event',
+            'http://localhost:8000/volunteer/4/event',
         );
         console.log(result.data)
         setEvents(result.data)
