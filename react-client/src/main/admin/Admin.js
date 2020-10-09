@@ -7,10 +7,21 @@ import {
 } from "react-router-dom";
 import './chat.css'
 import axios from 'axios'
-
+const initEvent = {
+    age: "26",
+    end_date: "2020/3/11",
+    id: "1",
+    job_skill: "Graphic Design",
+    location: "Tai Po",
+    maximum_attendance: "15",
+    ngo_name: "c",
+    start_date: "2020/3/10",
+    status: "pending"
+}
 export default function Admin() {
     const [events, setEvents] = useState([]);
-    const [selectedEvent, setSelectedEvent] = useState({ "id": "", "ngo_name": "abc" })
+    const [selectedEvent, setSelectedEvent] = useState(initEvent)
+    const [msg, setMsg] = useState('')
     useEffect(async () => {
         const result = await axios.get(
             'http://localhost:8000/event',
@@ -19,6 +30,23 @@ export default function Admin() {
         console.log(result.data)
         setEvents(result.data)
     }, []);
+    const updateEvent = () => {
+        if (msg === 'yes') {
+            console.log("update")
+            alert("Approved!!")
+            selectedEvent.status = "approved"
+            // setSelectedEvent({ ...selectedEvent })
+            // setEvents([...events])
+
+        } else if (msg === 'no') {
+            alert("Disapproved!!")
+            console.log("sorry")
+            selectedEvent.status = "disapproved"
+            // setSelectedEvent({ ...selectedEvent })
+            // setEvents([...events])
+        }
+
+    }
     return (
 
         <div className="row">
@@ -59,7 +87,7 @@ export default function Admin() {
                                     </div>
                                 </div>
                             </a>
-                            <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
+                            {/* <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
                                 <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                                     <div className="media-body ml-4">
                                         <div className="d-flex align-items-center justify-content-between mb-1">
@@ -68,15 +96,16 @@ export default function Admin() {
                                         <p className="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
                                     </div>
                                 </div>
-                            </a>
+                            </a> */}
+
                             {events.map(e =>
-                                <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" onClick={() => setSelectedEvent(e)}>
+                                <a key={e.id} href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" onClick={() => setSelectedEvent(e)}>
                                     <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                                         <div className="media-body ml-4">
                                             <div className="d-flex align-items-center justify-content-between mb-1">
-                                                <h6 className="mb-0">{e.id}</h6><small className="small font-weight-bold">14 Dec</small>
+                                                <h6 className="mb-0">Sample Event - {e.status}</h6><small className="small font-weight-bold">{e.start_date}</small>
                                             </div>
-                                            <p className="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
+                                            <p className="font-italic text-muted mb-0 text-small">{e.location}</p>
                                         </div>
                                     </div>
                                 </a>
@@ -91,65 +120,44 @@ export default function Admin() {
             <div className="col-sm-8" >
                 <div className="px-4 py-5 chat-box bg-white navbar" style={{ 'height': '100vh' }}>
                     {/* Sender Message*/}
-                    {selectedEvent.ngo_name}
-                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
-                        <div className="media-body ml-3">
-                            <div className="bg-light rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
-                            </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
+
+
+                    {/* const initEvent = {
+    age: "26",
+    end_date: "2020/3/11",
+    id: "1",
+    job_skill: "Graphic Design",
+    location: "Tai Po",
+    maximum_attendance: "15",
+    ngo_name: "c",
+    start_date: "2020/3/10",
+    status: "pending"
+} */}
                     {/* Reciever Message*/}
-                    <div className="media w-50 ml-auto mb-3">
+                    <div className="media w-100 ml-auto mb-3">
                         <div className="media-body">
                             <div className="bg-primary rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+                                <strong style={{ color: 'white' }}>Selected Event:</strong>
+                                <p className="text-small mb-0 text-white">Sample Event {selectedEvent.id} by {selectedEvent.ngo_name}: {selectedEvent.location}, {selectedEvent.job_skill}, {selectedEvent.maximum_attendance}</p>
                             </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
+                            <p className="small text-muted">{selectedEvent.start_date} ~ {selectedEvent.end_date} </p>
                         </div>
                     </div>
                     {/* Sender Message*/}
                     <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                         <div className="media-body ml-3">
                             <div className="bg-light rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-muted">Test, which is a new approach to have</p>
+                                <p className="text-small mb-0 text-muted">The above is event detail! you wanna approve?</p>
                             </div>
                             <p className="small text-muted">12:00 PM | Aug 13</p>
                         </div>
                     </div>
-                    {/* Reciever Message*/}
-                    <div className="media w-50 ml-auto mb-3">
-                        <div className="media-body">
-                            <div className="bg-primary rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-                            </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    {/* Sender Message*/}
-                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
-                        <div className="media-body ml-3">
-                            <div className="bg-light rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-muted">Test, which is a new approach</p>
-                            </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
-                    {/* Reciever Message*/}
-                    <div className="media w-50 ml-auto mb-3">
-                        <div className="media-body">
-                            <div className="bg-primary rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-white">Apollo University, Delhi, India Test</p>
-                            </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
+
                     <form action="#" className="bg-light" style={{ 'width': '100%', 'position': 'relative', 'top': '80px' }}>
                         <div className="input-group">
-                            <input type="text" placeholder="Type a message" aria-describedby="button-addon2" className="form-control rounded-0 border-0 py-4 bg-light" />
+                            <input type="text" placeholder="Type a message" aria-describedby="button-addon2" className="form-control rounded-0 border-0 py-4 bg-light" value={msg} onChange={(e) => { setMsg(e.target.value) }} />
                             <div className="input-group-append">
-                                <button id="button-addon2" type="submit" className="btn btn-link"> <i className="fa fa-paper-plane" /></button>
+                                <button id="button-addon2" className="btn btn-link"> <i className="fa fa-paper-plane" onClick={() => { updateEvent(selectedEvent.id) }} /></button>
                             </div>
                         </div>
                     </form>
@@ -157,6 +165,8 @@ export default function Admin() {
 
 
             </div>
+
+
         </div >
     );
 }
