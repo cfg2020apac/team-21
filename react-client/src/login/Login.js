@@ -25,14 +25,34 @@ export default function Login() {
                         <form>
                             <div className="form-group">
                                 <label>User Name</label>
-                                <input type="text" className="form-control" placeholder="User Name" value={path} onChange={handleChange} />
+                                <input type="text" className="form-control" placeholder="User Name" />
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
                                 <input type="password" className="form-control" placeholder="Password" />
                             </div>
-                            <Link to={'/' + path} component="button" className="btn btn-black mr-1">Login</Link>
-                            <Link to="/" component="button" className="btn btn-secondary pink">Home</Link>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="volunteer" value="volunteer" />
+                                <label class="form-check-label" for="volunteer">
+                                    Volunteer
+                                    </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="ngo" value="ngo" />
+                                <label class="form-check-label" for="ngo">
+                                    NGO
+                                    </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="admin" value="admin" />
+                                <label class="form-check-label" for="admin">
+                                    Admin
+                                    </label>
+                            </div>
+                            <button type="submit" className="btn btn-black mr-1">Login</button>
+                            <button type="submit" className="btn btn-secondary pink">Register</button>
+                            {/* <Link to={'/' + path} component="button" className="btn btn-black mr-1">Login</Link>
+                            <Link to="/" component="button" className="btn btn-secondary pink">Home</Link> */}
                         </form>
                     </div>
                 </div>
