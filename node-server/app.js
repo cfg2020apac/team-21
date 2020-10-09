@@ -29,6 +29,12 @@ app.get('/reset', (req, res) => {
     res.sendStatus(200)
 })
 
+app.get('/volunteer/:id', (req, res) => {
+    const data = fs.readFileSync('./db/volunteer.json', { encoding: 'utf8' });
+    data[req.params.id-1]['job_skill']
+    res.send(data[req.params.id-1]['job_skill'])
+})
+
 app.post('/volunteer', (req, res) => {
     const data = req.body
     fs.writeFileSync('./db/volunteer.json', JSON.stringify(data), { encoding: 'utf8' });
