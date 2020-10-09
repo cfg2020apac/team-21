@@ -5,6 +5,7 @@ import Home from './home/Home';
 import Chat from './chat/Chat';
 import Admin from './admin/Admin';
 import Volunteer from './volunteer/Volunteer';
+import Ngo from './ngo/ngo';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 import {
@@ -52,6 +53,11 @@ export default class Login extends React.Component {
                     <Route path="/admin">
                         <Admin />
                     </Route>
+
+                    <Route path="/ngo">
+                        <Ngo />
+                    </Route>
+
                 </Switch>
 
             </div>
