@@ -4,6 +4,7 @@ import Dashboard from './dashboard/Dashboard';
 import Home from './home/Home';
 import Chat from './chat/Chat';
 import Admin from './admin/Admin';
+import AdminDashboard from './admin/Dashboard';
 import Volunteer from './volunteer/Volunteer';
 import Ngo from './ngo/ngo';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -50,8 +51,11 @@ export default class Login extends React.Component {
                     <Route path="/dashboard">
                         <Dashboard />
                     </Route>
-                    <Route path="/admin">
+                    <Route path="/admin" exact="true">
                         <Admin />
+                    </Route>
+                    <Route path="/admin/dashboard" exact="true">
+                        <AdminDashboard />
                     </Route>
 
                     <Route path="/ngo">
