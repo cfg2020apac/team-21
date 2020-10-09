@@ -7,6 +7,97 @@ import {
 } from "react-router-dom";
 import './chat.css'
 import axios from 'axios'
+import { VegaLite } from 'react-vega';
+const barchart1 = {
+    spec: {
+        width: 400,
+        height: 200,
+        mark: 'bar',
+        encoding: {
+            x: { field: 'a', type: 'ordinal' },
+            y: { field: 'b', type: 'quantitative' },
+        },
+        data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
+    },
+    data: {
+        table: [
+            { a: 'Hunger & homelessness', b: 146 },
+            { a: 'Elderly', b: 77 },
+            { a: 'Environmental education; Hunger & homelessness', b: 47 },
+            { a: 'Animals', b: 43 },
+            { a: 'Children and youth; Elderly; Hunger & homelessness', b: 36 },
+            { a: 'Children and youth; People with disabilities', b: 21 },
+            { a: 'Environmental education', b: 14 },
+            { a: 'Hungers and homeless', b: 14 },
+            { a: 'Children and youth', b: 13 },
+            { a: 'People with disabilities; People with mental illness', b: 12 },
+            { a: 'Children and youth; Environmental education', b: 11 },
+            { a: 'Integrated', b: 7 },
+            { a: 'Elderly; People with illness', b: 6 },
+            { a: 'Children and youth; Ethnic minorities', b: 4 },
+            { a: 'Children and youth; Ethnic minorities', b: 2 },
+            { a: 'Women', b: 2 },
+            { a: 'Environmental education; Integrated', b: 2 },
+            { a: 'Adults; Children and youth; Elderly', b: 2 },
+            { a: 'Environmental education; Women', b: 1 },
+            { a: 'Adults; Elderly; Environmental education', b: 1 },
+            { a: 'Children and youth; Refugees and asylum seekers', b: 1 },
+            { a: 'Refugees and asylum seekers', b: 1 },
+            { a: 'Adults; Children and youth; Elderly; People with disabilities', b: 1 },
+            { a: 'People with mental illness', b: 1 }
+
+        ],
+    }
+
+}
+
+// const pie_spec = {
+//     width: 400,
+//     height: 200,
+//     mark: 'pie',
+//     encoding: {
+//         x: { field: 'a', type: 'ordinal' },
+//         y: { field: 'b', type: 'quantitative' },
+//     },
+//     data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
+// }
+
+
+
+// const barData1 = {
+//     table: [
+//         { a: 'Yuen Long', b: 32 },
+//         { a: 'North', b: 66 },
+//         { a: 'Tai Po', b: 142 },
+//         { a: 'Central & Western', b: 50 },
+//         { a: 'Kowloon City', b: 171 },
+//         { a: 'Islands', b: 119 },
+//         { a: 'Sha Tin', b: 56 },
+//         { a: 'Sham Shui Po', b: 118 },
+//         { a: 'Kwai Tsing', b: 86 },
+//         { a: 'Sai Kung', b: 72 },
+//         { a: 'Wong Tai Sin', b: 97 },
+//         { a: 'Yau Tsim Mong', b: 88 },
+//         { a: 'Tsuen Mun', b: 72 },
+//         { a: 'Southern', b: 91 },
+//         { a: 'Kwun Tong', b: 57 },
+//         { a: 'Wan Chai', b: 31 },
+//         { a: 'Eastern', b: 60 }
+
+//     ],
+// }
+
+
+// const pieData = {
+//     table: [
+//         { a: 'English', b: 39 },
+//         { a: 'Mandarin', b: 33 },
+//         { a: 'Cantonese', b: 28 }
+//     ],
+// }
+
+
+
 const initEvent = {
     age_range: "old",
     end_date: "2020/3/11",
@@ -18,7 +109,8 @@ const initEvent = {
     start_date: "2020/3/10",
     status: "pending"
 }
-export default function Dashboard() {
+
+export default function AdminDashboard() {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(initEvent)
     const [msg, setMsg] = useState('')
@@ -62,11 +154,14 @@ export default function Dashboard() {
                 <div className="bg-white">
                     <div className="navbar" style={{ 'overflow': 'scroll', 'height': '100vh', 'margin-left': '5px' }}>
                         <div className="panel">
-                            <a class='item'><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin/dashboard" component="a" className="item fa fa-bar-chart fa-2x"></Link>
+
                             <hr></hr>
-                            <a class='item'><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin" component="a" className="item fa fa-cog fa-2x"></Link>
+
                             <hr></hr>
-                            <a class='item'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin/volunteer" component="a" className="item fa fa-users fa-2x"></Link>
+
                         </div>
 
 
@@ -142,6 +237,14 @@ export default function Dashboard() {
     status: "pending"
 } */}
                     {/* Reciever Message*/}
+                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                        <div className="media-body ml-3">
+                            <div className="bg-light rounded py-2 px-3 mb-2">
+                                <p className="text-small mb-0 text-muted">Please type chart name to show the dashboard!!</p>
+                            </div>
+                            <p className="small text-muted">12:00 PM | Aug 13</p>
+                        </div>
+                    </div>
                     <div className="media w-100 ml-auto mb-3">
                         <div className="media-body">
                             <div className="bg-primary rounded py-2 px-3 mb-2">
@@ -152,14 +255,7 @@ export default function Dashboard() {
                         </div>
                     </div>
                     {/* Sender Message*/}
-                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
-                        <div className="media-body ml-3">
-                            <div className="bg-light rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-muted">The above is event detail! you wanna approve?</p>
-                            </div>
-                            <p className="small text-muted">12:00 PM | Aug 13</p>
-                        </div>
-                    </div>
+
 
                     <form action="#" className="bg-light" style={{ 'width': '100%', 'position': 'relative', 'top': '80px' }}>
                         <div className="input-group">

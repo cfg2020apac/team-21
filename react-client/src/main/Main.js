@@ -1,10 +1,12 @@
 import React from 'react';
 import About from './about/About';
 import Dashboard from './dashboard/Dashboard';
+
 import Home from './home/Home';
 import Chat from './chat/Chat';
 import Admin from './admin/Admin';
 import AdminDashboard from './admin/Dashboard';
+import AdminVolunteer from './admin/Volunteer';
 import Volunteer from './volunteer/Volunteer';
 import Ngo from './ngo/ngo';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -15,7 +17,8 @@ import {
     Route,
     Link
 } from "react-router-dom";
-export default class Login extends React.Component {
+
+export default class Main extends React.Component {
     render() {
         return (
             <div>
@@ -36,9 +39,11 @@ export default class Login extends React.Component {
 
 
                 <Switch>
+
                     <Route exact path="/">
                         <Home />
                     </Route>
+
                     <Route path="/about">
                         <About />
                     </Route>
@@ -56,6 +61,9 @@ export default class Login extends React.Component {
                     </Route>
                     <Route path="/admin/dashboard" exact="true">
                         <AdminDashboard />
+                    </Route>
+                    <Route path="/admin/volunteer" exact="true">
+                        <AdminVolunteer />
                     </Route>
 
                     <Route path="/ngo">

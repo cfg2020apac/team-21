@@ -62,11 +62,14 @@ export default function Admin() {
                 <div className="bg-white">
                     <div className="navbar" style={{ 'overflow': 'scroll', 'height': '100vh', 'margin-left': '5px' }}>
                         <div className="panel">
-                            <a class='item'><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin/dashboard" component="a" className="item fa fa-bar-chart fa-2x"></Link>
+
                             <hr></hr>
-                            <a class='item'><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin" component="a" className="item fa fa-cog fa-2x"></Link>
+
                             <hr></hr>
-                            <a class='item'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin/volunteer" component="a" className="item fa fa-users fa-2x"></Link>
+
                         </div>
 
 
