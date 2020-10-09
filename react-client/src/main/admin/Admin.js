@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -6,8 +6,19 @@ import {
     Link
 } from "react-router-dom";
 import './chat.css'
+import axios from 'axios'
 
-export default function Chat() {
+export default function Admin() {
+    const [events, setEvents] = useState([]);
+
+    useEffect(async () => {
+        const result = await axios.get(
+            'http://localhost:8000/event',
+        );
+
+        console.log(result.data)
+        setEvents(result.data)
+    }, []);
     return (
 
         <div className="row">
@@ -42,9 +53,9 @@ export default function Chat() {
                                 <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                                     <div className="media-body ml-4">
                                         <div className="d-flex align-items-center justify-content-between mb-1">
-                                            <h6 className="mb-0">Jason Doe</h6><small className="small font-weight-bold">25 Dec</small>
+                                            <h6 className="mb-0">Hi! There</h6><small className="small font-weight-bold">25 Dec</small>
                                         </div>
-                                        <p className="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                        <p className="font-italic mb-0 text-small">The below event list is sorted based on the status criteria!</p>
                                     </div>
                                 </div>
                             </a>
@@ -58,7 +69,18 @@ export default function Chat() {
                                     </div>
                                 </div>
                             </a>
-
+                            {events.map(e =>
+                                <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                    <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                                        <div className="media-body ml-4">
+                                            <div className="d-flex align-items-center justify-content-between mb-1">
+                                                <h6 className="mb-0">Jason Doe</h6><small className="small font-weight-bold">14 Dec</small>
+                                            </div>
+                                            <p className="font-italic text-muted mb-0 text-small">Lorem ipsum dolor sit amet, consectetur. incididunt ut labore.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            )}
 
 
                         </div>
