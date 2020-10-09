@@ -6,7 +6,7 @@ export default function Login() {
     const [path, setPath] = useState('');
     useEffect(async () => {
         setPath('')
-    },[]);
+    }, []);
     return (
         <Router>
             <div>
@@ -22,32 +22,32 @@ export default function Login() {
                             <form>
                                 <div className="form-group">
                                     <label>User Name</label>
-                                    <input type="text" className="form-control" placeholder="User Name" required/>
+                                    <input type="text" className="form-control" placeholder="User Name" required />
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
-                                    <input type="password" className="form-control" placeholder="Password" required/>
+                                    <input type="password" className="form-control" placeholder="Password" required />
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="volunteer" value="volunteer" onClick={() => {setPath('/volunteer')}}/>
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="volunteer" value="volunteer" onClick={() => { setPath('/volunteer') }} />
                                     <label class="form-check-label" for="volunteer">
                                         Volunteer
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="ngo" value="ngo" onClick={() => {setPath('/ngo')}}/>
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="ngo" value="ngo" onClick={() => { setPath('/ngo') }} />
                                     <label class="form-check-label" for="ngo">
                                         NGO
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="admin" value="admin" onClick={() => {setPath('/admin')}}/>
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="admin" value="admin" onClick={() => { setPath('/admin') }} />
                                     <label class="form-check-label" for="admin">
                                         Admin
                                     </label>
                                 </div>
-                                <Link to={path} component="a" className="btn btn-primary pink">Login</Link>
-                                <Link to='/' component="a" className = "btn btn-seconary pink">Register</Link>
+                                <Link to={path} component="a" className="btn btn-primary pink ml-1">Login</Link>
+                                <Link to='/' component="a" className="btn btn-seconary pink ml-1">Register</Link>
                                 {/*<Link to="/registration" component="a" className="btn btn-secondary pink">Register</Link>*/}
                             </form>
 
