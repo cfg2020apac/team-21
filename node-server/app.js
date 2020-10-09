@@ -1,7 +1,10 @@
 const express = require('express')
 const fs = require('fs')
+var bodyParser = require('body-parser');
 const app = express()
 const port = 8000
+
+app.use(bodyParser.json('application/json'));
 
 const data = fs.readFileSync('./db/auth.json', { encoding: 'utf8' });
 app.get('/auth', (req, res) => {
@@ -9,7 +12,7 @@ app.get('/auth', (req, res) => {
 })
 
 app.post('/auth', (req, res) => {
-    console.log(res.body)
+    console.log(req.body)
     res.sendStatus(200);
 })
 
