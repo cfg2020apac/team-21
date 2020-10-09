@@ -1,6 +1,7 @@
 import React from 'react'
 import './login.css'
 
+
 export default class Login extends React.Component {
     render() {
         return (
@@ -22,6 +23,24 @@ export default class Login extends React.Component {
                                 <div className="form-group">
                                     <label>Password</label>
                                     <input type="password" className="form-control" placeholder="Password" />
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="volunteer" value="volunteer"/>
+                                    <label class="form-check-label" for="volunteer">
+                                        Volunteer
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="ngo" value="ngo"/>
+                                    <label class="form-check-label" for="ngo">
+                                        NGO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios" id="admin" value="admin"/>
+                                    <label class="form-check-label" for="admin">
+                                        Admin
+                                    </label>
                                 </div>
                                 <button type="submit" className="btn btn-black mr-1">Login</button>
                                 <button type="submit" className="btn btn-secondary pink">Register</button>
