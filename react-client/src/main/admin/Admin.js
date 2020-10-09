@@ -8,7 +8,7 @@ import {
 import './chat.css'
 import axios from 'axios'
 const initEvent = {
-    age: "26",
+    age_range: "old",
     end_date: "2020/3/11",
     id: "1",
     job_skill: "Graphic Design",
@@ -52,6 +52,7 @@ export default function Admin() {
         }
         setSelectedEvent({ ...selectedEvent })
         setEvents([...events])
+        setMsg('')
 
     }
     return (
@@ -106,7 +107,7 @@ export default function Admin() {
                             </a> */}
 
                             {events.map(e =>
-                                <a key={e.id} href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" onClick={() => setSelectedEvent(e)}>
+                                <a key={e.id} href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" style={e.status == 'approved' ? { backgroundColor: '#007bff', color: 'white' } : {}} onClick={() => setSelectedEvent(e)}>
                                     <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                                         <div className="media-body ml-4">
                                             <div className="d-flex align-items-center justify-content-between mb-1">
@@ -145,7 +146,7 @@ export default function Admin() {
                         <div className="media-body">
                             <div className="bg-primary rounded py-2 px-3 mb-2">
                                 <strong style={{ color: 'white' }}>Selected Event:</strong>
-                                <p className="text-small mb-0 text-white">Sample Event {selectedEvent.id} by {selectedEvent.ngo_name}: {selectedEvent.location}, {selectedEvent.job_skill}, {selectedEvent.maximum_attendance}</p>
+                                <p className="text-small mb-0 text-white">Sample Event {selectedEvent.id} by {selectedEvent.ngo_name}: {selectedEvent.location}, {selectedEvent.job_skill}, At most {selectedEvent.maximum_attendance} people ({selectedEvent.age_range})</p>
                             </div>
                             <p className="small text-muted">{selectedEvent.start_date} ~ {selectedEvent.end_date} </p>
                         </div>
