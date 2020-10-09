@@ -344,7 +344,7 @@ export default function Admin() {
             <p>Ours organization requests HandsOn Hong Kong to recruit volunteers and manage registration and communication for the service program(s) outlined above. This Volunteer Services Request Form supplements our existing NGO Partner Charter. We agree to uphold the requirements as set out in the Charter.</p>
           </div>
           
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit"onClick ={()=>{setShowing(true)}}>Submit</button>
       </form>
 
                 </div>
