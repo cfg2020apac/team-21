@@ -2,6 +2,7 @@ import React from 'react';
 import About from './about/About';
 import Dashboard from './dashboard/Dashboard';
 import Home from './home/Home';
+import Chat from './chat/Chat';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
     BrowserRouter as Router,
@@ -13,7 +14,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light mb-1">
+                {/* <nav class="navbar navbar-expand-lg navbar-light bg-light mb-1 sidebar">
                     <a class="navbar-brand" href="#">Navbar</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -25,7 +26,7 @@ export default class Login extends React.Component {
                             <Link to="/dashboard" component="a" className="nav-link">Dashboard</Link>
                         </div>
                     </div>
-                </nav>
+                </nav> */}
 
 
 
@@ -35,6 +36,9 @@ export default class Login extends React.Component {
                     </Route>
                     <Route path="/about">
                         <About />
+                    </Route>
+                    <Route path="/chat">
+                        <Chat />
                     </Route>
                     <Route path="/dashboard">
                         <Dashboard />
