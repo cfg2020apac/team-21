@@ -30,21 +30,28 @@ export default function Admin() {
         console.log(result.data)
         setEvents(result.data)
     }, []);
-    const updateEvent = () => {
+    const updateEvent = (id) => {
         if (msg === 'yes') {
             console.log("update")
             alert("Approved!!")
             selectedEvent.status = "approved"
-            // setSelectedEvent({ ...selectedEvent })
-            // setEvents([...events])
-
+            for (let i = 0; i < events.length; ++i) {
+                if (events[i].id == id) {
+                    events[i].status = "approved"
+                }
+            }
         } else if (msg === 'no') {
             alert("Disapproved!!")
             console.log("sorry")
             selectedEvent.status = "disapproved"
-            // setSelectedEvent({ ...selectedEvent })
-            // setEvents([...events])
+            for (let i = 0; i < events.length; ++i) {
+                if (events[i].id == id) {
+                    events[i].status = "disapproved"
+                }
+            }
         }
+        setSelectedEvent({ ...selectedEvent })
+        setEvents([...events])
 
     }
     return (
