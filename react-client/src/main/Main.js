@@ -4,6 +4,7 @@ import Dashboard from './dashboard/Dashboard';
 import Home from './home/Home';
 import Chat from './chat/Chat';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.min.css';
 import {
     BrowserRouter as Router,
     Switch,
