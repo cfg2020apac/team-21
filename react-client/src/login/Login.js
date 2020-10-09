@@ -1,9 +1,9 @@
 import React from 'react'
-import 'login.css'
+import './login.css'
 
 export default class Login extends React.Component {
     render() {
-        return (        
+        return (
             <div>
                 <div className="sidenav">
                     <div className="login-main-text">
@@ -23,13 +23,13 @@ export default class Login extends React.Component {
                                     <label>Password</label>
                                     <input type="password" className="form-control" placeholder="Password" />
                                 </div>
-                                <button type="submit" className="btn btn-black">Login</button>
+                                <button type="submit" className="btn btn-black mr-1">Login</button>
                                 <button type="submit" className="btn btn-secondary pink">Register</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
