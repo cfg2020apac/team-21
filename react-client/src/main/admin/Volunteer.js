@@ -7,6 +7,66 @@ import {
 } from "react-router-dom";
 import './chat.css'
 import axios from 'axios'
+import DataTable from 'react-data-table-component';
+const data = [{ id: 1, title: 'Conan the Barbarian', year: '1982' }];
+// {
+//     "id": "97",
+//     "first_name": "Chia",
+//     "last_name": "Kellerman",
+//     "interests": "Food Assistance",
+//     "gender": "male",
+//     "phonenumber": "83964773",
+//     "job_skill": "Administrative/General Office Support",
+//     "age": "12",
+//     "language": "English"
+// },
+const columns = [
+    {
+        name: 'ID',
+        selector: 'id',
+        sortable: true,
+    },
+    {
+        name: 'First Name',
+        selector: 'first_name',
+        sortable: true,
+    },
+    {
+        name: 'Last Name',
+        selector: 'last_name',
+        sortable: true,
+    },
+    {
+        name: 'interests',
+        selector: 'interests',
+        sortable: true,
+    },
+    {
+        name: 'Gender',
+        selector: 'gender',
+        sortable: true,
+    },
+    {
+        name: 'Phone Number',
+        selector: 'phonenumber',
+        sortable: true,
+    },
+    {
+        name: 'Job Skill',
+        selector: 'job_skill',
+        sortable: true,
+    },
+    {
+        name: 'Age',
+        selector: 'age',
+        sortable: true,
+    },
+    {
+        name: 'Language',
+        selector: 'language',
+        sortable: true,
+    }
+];
 const initEvent = {
     age_range: "old",
     end_date: "2020/3/11",
@@ -20,6 +80,7 @@ const initEvent = {
 }
 export default function AdminVolunteer() {
     const [events, setEvents] = useState([]);
+    const [volunteers, setVolunteers] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(initEvent)
     const [msg, setMsg] = useState('')
     useEffect(async () => {
@@ -27,8 +88,15 @@ export default function AdminVolunteer() {
             'http://localhost:8000/event',
         );
 
+
+        const result2 = await axios.get(
+            'http://localhost:8000/volunteer',
+        );
+
         console.log(result.data)
+        console.log(result2.data)
         setEvents(result.data)
+        setVolunteers(result2.data)
     }, []);
     const updateEvent = (id) => {
         if (msg === 'yes') {
@@ -146,12 +214,12 @@ export default function AdminVolunteer() {
 } */}
                     {/* Reciever Message*/}
                     <div className="media w-100 ml-auto mb-3">
-                        <div className="media-body">
-                            <div className="bg-primary rounded py-2 px-3 mb-2">
-                                <strong style={{ color: 'white' }}>Selected Event:</strong>
-                                <p className="text-small mb-0 text-white">Sample Event {selectedEvent.id} by {selectedEvent.ngo_name}: {selectedEvent.location}, {selectedEvent.job_skill}, At most {selectedEvent.maximum_attendance} people ({selectedEvent.age_range})</p>
-                            </div>
-                            <p className="small text-muted">{selectedEvent.start_date} ~ {selectedEvent.end_date} </p>
+                        <div className="media-body" style={{ overflow: 'scroll', maxHeight: '500px' }}>
+                            <DataTable
+                                title="Current Volunteers"
+                                columns={columns}
+                                data={volunteers}
+                            />
                         </div>
                     </div>
                     {/* Sender Message*/}

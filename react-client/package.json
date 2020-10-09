@@ -10,10 +10,12 @@
     "bootstrap": "^4.5.2",
     "font-awesome": "^4.7.0",
     "react": "^16.13.1",
+    "react-data-table-component": "^6.11.5",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-vega": "^7.4.1",
+    "styled-components": "^5.2.0",
     "vega": "^5.17.0",
     "vega-lite": "^4.16.8"
   },

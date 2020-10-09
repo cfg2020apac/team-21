@@ -10,7 +10,7 @@ import axios from 'axios'
 import { VegaLite } from 'react-vega';
 const barchart1 = {
     spec: {
-        width: 400,
+        width: 300,
         height: 200,
         mark: 'bar',
         encoding: {
@@ -51,41 +51,61 @@ const barchart1 = {
 
 }
 
-// const pie_spec = {
-//     width: 400,
-//     height: 200,
-//     mark: 'pie',
-//     encoding: {
-//         x: { field: 'a', type: 'ordinal' },
-//         y: { field: 'b', type: 'quantitative' },
-//     },
-//     data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
-// }
+const piechart = {
+    spec: {
+        mark: 'arc',
+        encoding: {
+            "theta": { "field": "value", "type": "quantitative" },
+            "color": { "field": "Language", "type": "nominal" }
+        },
+        data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
+        "view": { "stroke": null }
+    }, data: {
+        table: [
+            { "Language": "English", "value": 39 },
+            { "Language": "Mandarin", "value": 23 },
+            { "Language": "Cantonese", "value": 28 }
+        ],
+    }
+}
 
 
 
-// const barData1 = {
-//     table: [
-//         { a: 'Yuen Long', b: 32 },
-//         { a: 'North', b: 66 },
-//         { a: 'Tai Po', b: 142 },
-//         { a: 'Central & Western', b: 50 },
-//         { a: 'Kowloon City', b: 171 },
-//         { a: 'Islands', b: 119 },
-//         { a: 'Sha Tin', b: 56 },
-//         { a: 'Sham Shui Po', b: 118 },
-//         { a: 'Kwai Tsing', b: 86 },
-//         { a: 'Sai Kung', b: 72 },
-//         { a: 'Wong Tai Sin', b: 97 },
-//         { a: 'Yau Tsim Mong', b: 88 },
-//         { a: 'Tsuen Mun', b: 72 },
-//         { a: 'Southern', b: 91 },
-//         { a: 'Kwun Tong', b: 57 },
-//         { a: 'Wan Chai', b: 31 },
-//         { a: 'Eastern', b: 60 }
+const barchart2 = {
+    data: {
+        table: [
+            { a: 'Yuen Long', b: 32 },
+            { a: 'North', b: 66 },
+            { a: 'Tai Po', b: 142 },
+            { a: 'Central & Western', b: 50 },
+            { a: 'Kowloon City', b: 171 },
+            { a: 'Islands', b: 119 },
+            { a: 'Sha Tin', b: 56 },
+            { a: 'Sham Shui Po', b: 118 },
+            { a: 'Kwai Tsing', b: 86 },
+            { a: 'Sai Kung', b: 72 },
+            { a: 'Wong Tai Sin', b: 97 },
+            { a: 'Yau Tsim Mong', b: 88 },
+            { a: 'Tsuen Mun', b: 72 },
+            { a: 'Southern', b: 91 },
+            { a: 'Kwun Tong', b: 57 },
+            { a: 'Wan Chai', b: 31 },
+            { a: 'Eastern', b: 60 }
 
-//     ],
-// }
+        ]
+    },
+    spec: {
+        width: 300,
+        height: 100,
+        mark: 'bar',
+        encoding: {
+            x: { field: 'a', type: 'ordinal' },
+            y: { field: 'b', type: 'quantitative' },
+        },
+        data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
+    }
+
+}
 
 
 // const pieData = {
@@ -114,6 +134,9 @@ export default function AdminDashboard() {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(initEvent)
     const [msg, setMsg] = useState('')
+    const [command, setCommand] = useState('')
+    const [showbar, setShowBar] = useState(false)
+    const [showpie, setShowPie] = useState(false)
     useEffect(async () => {
         const result = await axios.get(
             'http://localhost:8000/event',
@@ -122,8 +145,8 @@ export default function AdminDashboard() {
         console.log(result.data)
         setEvents(result.data)
     }, []);
-    const updateEvent = (id) => {
-        if (msg === 'yes') {
+    const updateCommand = (id) => {
+        if (msg === 'approve') {
             console.log("update")
             alert("Approved!!")
             selectedEvent.status = "approved"
@@ -132,7 +155,10 @@ export default function AdminDashboard() {
                     events[i].status = "approved"
                 }
             }
-        } else if (msg === 'no') {
+            setSelectedEvent({ ...selectedEvent })
+            setEvents([...events])
+
+        } else if (msg === 'disapprove') {
             alert("Disapproved!!")
             console.log("sorry")
             selectedEvent.status = "disapproved"
@@ -141,10 +167,19 @@ export default function AdminDashboard() {
                     events[i].status = "disapproved"
                 }
             }
+            setSelectedEvent({ ...selectedEvent })
+            setEvents([...events])
+
+        } else if (msg == 'showbar') {
+            setShowBar(true)
+        } else if (msg == 'showpie') {
+            setShowPie(true)
+        } else if (msg == 'clear') {
+            setShowPie(false)
+            setShowBar(false)
         }
-        setSelectedEvent({ ...selectedEvent })
-        setEvents([...events])
         setMsg('')
+
 
     }
     return (
@@ -245,7 +280,7 @@ export default function AdminDashboard() {
                             <p className="small text-muted">12:00 PM | Aug 13</p>
                         </div>
                     </div>
-                    <div className="media w-100 ml-auto mb-3">
+                    {/* <div className="media w-100 ml-auto mb-3">
                         <div className="media-body">
                             <div className="bg-primary rounded py-2 px-3 mb-2">
                                 <strong style={{ color: 'white' }}>Selected Event:</strong>
@@ -253,15 +288,21 @@ export default function AdminDashboard() {
                             </div>
                             <p className="small text-muted">{selectedEvent.start_date} ~ {selectedEvent.end_date} </p>
                         </div>
-                    </div>
-                    {/* Sender Message*/}
+                    </div> */}
+                    {(showbar) ? <span> <VegaLite spec={barchart1.spec} data={barchart1.data} />
+                        <VegaLite spec={barchart2.spec} data={barchart2.data} /></span> : null}
 
 
-                    <form action="#" className="bg-light" style={{ 'width': '100%', 'position': 'relative', 'top': '80px' }}>
+
+                    {(showpie) ? <span> <VegaLite spec={piechart.spec} data={piechart.data} />
+                    </span> : null}
+
+
+                    <form action="#" className="bg-light" style={{ 'width': '95%', 'position': 'absolute', 'bottom': '50px' }}>
                         <div className="input-group">
                             <input type="text" placeholder="Type a message" aria-describedby="button-addon2" className="form-control rounded-0 border-0 py-4 bg-light" value={msg} onChange={(e) => { setMsg(e.target.value) }} />
                             <div className="input-group-append">
-                                <button id="button-addon2" className="btn btn-link"> <i className="fa fa-paper-plane" onClick={() => { updateEvent(selectedEvent.id) }} /></button>
+                                <button id="button-addon2" className="btn btn-link"> <i className="fa fa-paper-plane" onClick={() => { updateCommand(selectedEvent.id) }} /></button>
                             </div>
                         </div>
                     </form>
