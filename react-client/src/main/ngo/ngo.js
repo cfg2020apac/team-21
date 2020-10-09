@@ -182,99 +182,170 @@ export default function Admin() {
             <div className="col-sm-8" id="chat-box"style={{ display: !showing ? "block" : "none" }}>
                 <div className="px-4 py-5 chat-box bg-white navbar" style={{ 'height': '100vh', 'position': 'relative', 'top': '0px','overflow': 'scroll', 'height': '100vh' }}>
                     <div className="form" style={{ 'margin-left': '45px'}}>
-                <h2>NGO Partner: Volunteer Services Request Form</h2>
-                <form>
-
-
-                            <div class="form-group row">
-                            <label for="inputNGO" class="col-sm-5 col-form-label">NGO Name</label>
-                                <div class="col-sm-10">
-                                    <input type="ngo" class="form-control" id="inputNGO" placeholder="NGO Name"/>
+                        <h2>NGO Partner: Volunteer Services Request Form</h2>
+                            <form>
+                                <div class="form-group row">
+                                  <label for="inputNGO" class="col-sm-2 col-form-label">NGO Name</label>
+                                      <div class="col-sm-10">
+                                        <input type="ngo" class="form-control" id="inputNGO" placeholder="NGO Name"/>
+                                      </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label for="inputIRD_file_number" class="col-sm-5 col-form-label">IRD File Number</label>
+                                <div class="form-group row">
+                                    <label for="inputIRD_file_number" class="col-sm-2 col-form-label">IRD File Number</label>
                                     <div class="col-sm-10">
-                                        <input type="IRD_file_number" class="form-control" id="inputIRD_file_number" placeholder="IRD File Number"/>
+                                     <input type="IRD_file_number" class="form-control" id="inputIRD_file_number" placeholder="IRD File Number"/>
                                     </div>
-                            </div>
-
-                            <div class="form-group row">
-                            <label for="input_program_name" class="col-sm-5 col-form-label">Program Name</label>
-                                <div class="col-sm-10">
-                                    <input type="program_name" class="form-control" id="input_program_name" placeholder="Program Name"/>
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                            <label for="inputNGO" class="col-sm-5 col-form-label">Location</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="location" placeholder="Location"/>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row" id="times">
-                                <label for="time_input" class="col-5 col-form-label">Start date</label>
-                                <div class="col-10">
-                                <input class="form-control" type="date" value="2011-08-19" id="time_input"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group row" id="times">
-                                <label for="time_input" class="col-5 col-form-label">End date</label>
-                                <div class="col-10">
-                                <input class="form-control" type="date" value="2011-08-20" id="time_input"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                            <label for="maximum_attendance" class="col-sm-5 col-form-label">Number of people</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="maximum_attendance" placeholder=""/>
-                                </div>
-                            </div>
-
-                            <div class="form-group " id ="languages">
-                                    <label for="input_roles" >Language requirement</label>
-                                    <div class="form-check"class="col-sm-2 col-form-label">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                                    <label class="form-check-label" for="defaultCheck1">
-                                    English
-                                    </label>
-                                    </div>
-
-                                    <div class="form-check"class="col-sm-2 col-form-label">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" />
-                                    <label class="form-check-label" for="defaultCheck2">
-                                     Mandarin
-                                    </label>
-                                    </div>
-
-                                    <div class="form-check"class="col-sm-2 col-form-label">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3" />
-                                    <label class="form-check-label" for="defaultCheck2">
-                                    Cantonese
-                                    </label>
-                                    </div>
-                            </div>    
-
-                                      <div class="form-group ">
-            <label for="min_age" >Range of age</label>
-            <div class="col">
-              <input type="number" class="form-control " id="min_age" placeholder="Minimum age"/>
+          <div class="form-group row">
+            <label for="input_program_name" class="col-sm-5 col-form-label">Program Name</label>
+            <div class="col-sm-10">
+              <input type="program_name" class="form-control" id="input_program_name" placeholder="Program Name"/>
             </div>
-            <label for="min_age" ></label>
+          </div>
+
+          <div class="form-group">
+            <label for="program_objective">Program Objective and Description</label>
+            <textarea class="form-control" id="program_objective" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="email_contact">Email</label>
+            <input type="email" class="form-control" id="email_contact" placeholder="Email"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone_contact">Phone</label>
+            <input type="phone_contact" class="form-control" id="phone_contact" placeholder="Phone"/>
+          </div>
+
+          <div class="form-group">
+            <label for="title_contact">Title</label>
+            <input type="title_contact" class="form-control" id="title_contact" placeholder="Title"/>
+          </div>
+
+          <div class="form-group">
+            <label for="inputLocation">Location of service activity</label>
+            <input type="inputLocation" id="inputLocation"class="form-control" id="inputLocation" placeholder="Location"/>
+          </div>
+
+          <div class="form-group">
+            <label for="input_no_user">Number of service users</label>
+            <input type="number" id="input_no_user"class="form-control" id="input_no_user" placeholder=""/>
+          </div>
+
+          <div class="form-group">
+            <label for="input_type_user">Type of service users</label>
+            <input type="input_type_user" id="input_type_user"class="form-control" id="input_type_user" placeholder=""/>
+          </div>
+          <div class="form-group row">
+            <label for="description_need">Description of needs</label>
+            <textarea class="form-control" id="description_need" rows="3"></textarea>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="no_sessions" class="col-sm-5 col-form-label">Number of session(s)</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="no_session" placeholder=""/>
+            </div>
+          </div>
+        
+          <div class="form-group row">
+            <label for="no_dates" class="col-sm-5 col-form-label">Date(s) of sessions</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="no_dates" placeholder=""/>
+            </div>
+          </div>
+
+          <div class="form-group row" id="times">
+            <label for="time_input" class="col-2 col-form-label">Timing for activity</label>
+            <div class="col-10">
+              <input class="form-control" type="date" value="2011-08-19" id="time_input"/>
+            </div>
+          </div>
+
+          
+          <div class="form-group row">
+            <label for="no_volunteers" class="col-sm-5 col-form-label">Number of volunteers needed</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="no_volunteers" placeholder=""/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="input_roles" class="col-sm-5 col-form-label">Role of volunteers</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="input_role" placeholder="Role of volunteers"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="min_age" class="col-sm-5 col-form-label">Range of age</label>
+            <div class="col">
+              <input type="number" class="form-control" id="min_age" placeholder="Minimum age"/>
+            </div>
             <div class="col">
               <input type="number" class="form-control"id="max_age" placeholder="Maximum age"/>
             </div>
-          </div>       
-                        
-                        </form>
-                        <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0">
-                            <button type="button" class="btn btn-primary" onClick ={()=>{setShowing(true)}}>Submit</button>
-                            </a>
+          </div>
+
+          <div class="form-group row" id ="languages">
+            <label for="input_roles" class="col-sm-5 col-form-label">Language requirement</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+              <label class="form-check-label" for="defaultCheck1">
+                English
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+              <label class="form-check-label" for="defaultCheck2">
+                Mandarin
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck3" />
+              <label class="form-check-label" for="defaultCheck2">
+                Cantonese
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="special_requirement">Remarks or special requirements</label>
+            <textarea class="form-control" id="special_requirement" rows="3"></textarea>
+          </div>
+
+          
+          <div class="form-group row">
+            <label for="gathering_place" class="col-sm-5 col-form-label">Gathering_place</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="gathering_place" placeholder=""/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="gathering_time" class="col-2 col-form-label">Gathering time</label>
+            <div class="col-10">
+              <input class="form-control" type="datetime-local" value="" id="gathering_time"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="budget_needed" class="col-sm-5 col-form-label">Budget Needed</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="budget_needed" placeholder=""/>
+            </div>
+          </div>
+
+          <div class="py-5 text-center">
+            <p><b>Agreement</b></p>
+            <p>Ours organization requests HandsOn Hong Kong to recruit volunteers and manage registration and communication for the service program(s) outlined above. This Volunteer Services Request Form supplements our existing NGO Partner Charter. We agree to uphold the requirements as set out in the Charter.</p>
+          </div>
+          
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+      </form>
 
                 </div>
             </div>
