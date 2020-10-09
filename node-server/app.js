@@ -6,14 +6,39 @@ const port = 8000
 
 app.use(bodyParser.json('application/json'));
 
-const data = fs.readFileSync('./db/auth.json', { encoding: 'utf8' });
-app.get('/auth', (req, res) => {
+const event = fs.readFileSync('./assets/event.json', { encoding: 'utf8' });
+const volunteer = fs.readFileSync('./assets/volunteer.json', { encoding: 'utf8' });
+
+const reset = () => {
+    fs.writeFileSync('./db/event.json', event, { encoding: 'utf8' });
+    fs.writeFileSync('./db/volunteer.json', volunteer, { encoding: 'utf8' });
+};
+reset();
+app.get('/event', (req, res) => {
+    const data = fs.readFileSync('./db/event.json', { encoding: 'utf8' });
     res.send(data)
 })
 
-app.post('/auth', (req, res) => {
-    console.log(req.body)
-    res.sendStatus(200);
+app.get('/volunteer', (req, res) => {
+    const data = fs.readFileSync('./db/volunteer.json', { encoding: 'utf8' });
+    res.send(data)
+})
+
+app.get('/reset', (req, res) => {
+    reset()
+    res.sendStatus(200)
+})
+
+app.post('/volunteer', (req, res) => {
+    const data = req.body
+    fs.writeFileSync('./db/volunteer.json', JSON.stringify(data), { encoding: 'utf8' });
+    res.sendStatus(200)
+})
+
+app.post('/event', (req, res) => {
+    const data = req.body
+    fs.writeFileSync('./db/event.json', JSON.stringify(data), { encoding: 'utf8' });
+    res.sendStatus(200)
 })
 
 app.listen(port, () => {
