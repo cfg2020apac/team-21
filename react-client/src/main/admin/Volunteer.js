@@ -226,13 +226,13 @@ export default function AdminVolunteer() {
                     <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
                         <div className="media-body ml-3">
                             <div className="bg-light rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-muted">The above is event detail! you wanna approve?</p>
+                                <p className="text-small mb-0 text-muted">The above is volunteer detail! you can sort by each column!</p>
                             </div>
                             <p className="small text-muted">12:00 PM | Aug 13</p>
                         </div>
                     </div>
 
-                    <form action="#" className="bg-light" style={{ 'width': '100%', 'position': 'relative', 'top': '80px' }}>
+                    <form action="#" className="bg-light" style={{ 'width': '95%', 'position': 'absolute', 'bottom': '50px' }}>
                         <div className="input-group">
                             <input type="text" placeholder="Type a message" aria-describedby="button-addon2" className="form-control rounded-0 border-0 py-4 bg-light" value={msg} onChange={(e) => { setMsg(e.target.value) }} />
                             <div className="input-group-append">
