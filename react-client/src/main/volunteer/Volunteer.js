@@ -9,11 +9,11 @@ import './volunteer.css'
 import axios from 'axios'
 
 
-export default function Volunteer() {
+export default function AdminVolunteer() {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState({ "id": "", "ngo_name": "" })
-    const[showing,setShowing] = useState(false);
-    
+    const [showing, setShowing] = useState(false);
+
     useEffect(async () => {
         const result = await axios.get(
             'http://localhost:8000/event',
@@ -24,7 +24,8 @@ export default function Volunteer() {
     }, []);
 
     return (
-        <div className="row">
+
+        < div className="row" >
             <div className="col-sm-1 px-0" style={{ 'maxWidth': '90px' }}>
                 <div className="bg-white">
                     <div className="navbar" style={{ 'overflow': 'scroll', 'height': '100vh', 'margin-left': '5px' }}>
@@ -56,10 +57,10 @@ export default function Volunteer() {
                                     </div>
                                 </div>
                             </a>
-                            
+
                             {events.map(e =>
-                                <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" onClick={() => {setSelectedEvent(e);setShowing(false)}}>
-                                    <div className="media"><img src={require('../assets/images/'+e.ngo_name+'.png')} alt="user" width={50} className="rounded-circle" />
+                                <a href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" onClick={() => { setSelectedEvent(e); setShowing(false) }}>
+                                    <div className="media"><img src={require('../assets/images/' + e.ngo_name + '.png')} alt="user" width={50} className="rounded-circle" />
                                         <div className="media-body ml-4">
                                             <div className="d-flex align-items-center justify-content-between mb-1">
                                                 <h6 className="mb-0">event_name_{e.id}</h6><small className="small font-weight-bold">{e.start_date}</small>
@@ -95,15 +96,15 @@ export default function Volunteer() {
                         </div>
                     </div>
                     {/* Reciever Message*/}
-                    { showing 
-                         ? <div className="media w-50 ml-auto mb-3">
-                                <div className="media-body">
-                                    <div className="bg-primary rounded py-2 px-3 mb-2">
-                                        <p className="text-small mb-0 text-white">I would love to join your event!</p>
-                                    </div>
-                                    <p className="small text-muted">12:00 PM | Aug 13</p>
+                    {showing
+                        ? <div className="media w-50 ml-auto mb-3">
+                            <div className="media-body">
+                                <div className="bg-primary rounded py-2 px-3 mb-2">
+                                    <p className="text-small mb-0 text-white">I would love to join your event!</p>
                                 </div>
+                                <p className="small text-muted">12:00 PM | Aug 13</p>
                             </div>
+                        </div>
                         : null
                     }
                     {/*<div className="media w-50 ml-auto mb-3">
@@ -116,7 +117,7 @@ export default function Volunteer() {
                     </div>*/}
                     <form action="#" className="bg-light" style={{ 'width': '100%', 'position': 'relative', 'top': '80px' }}>
                         <div className="input-group">
-                            <input type="text" placeholder="Apply now to volunteer!" aria-describedby="button-addon2" className="form-control rounded-0 border-0 py-4 bg-light" disabled/>
+                            <input type="text" placeholder="Apply now to volunteer!" aria-describedby="button-addon2" className="form-control rounded-0 border-0 py-4 bg-light" disabled />
                             <div className="input-group-append">
                                 <div>
                                     <button type="submit" class="btn btn-primary" onClick={() => setShowing(true)}>Apply!</button>
