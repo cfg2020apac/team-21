@@ -100,11 +100,7 @@ export default function Dashboard() {
             <div class="row">
                 <div class="col-sm-12">
                     <h2><VegaLite spec={spec} data={barData} /></h2>
-<<<<<<< HEAD
-                    <h2><VegaLite spec={spec} data={barData1} /></h2>
-=======
                     <h2><VegaLite spec={spec1} data={barData1} /></h2>
->>>>>>> f60207f069d7677635016849431fa7b9a12cbf5a
                     <h2><VegaLite spec={pie_spec} data={pieData} /></h2>
                 </div>
             </div>
