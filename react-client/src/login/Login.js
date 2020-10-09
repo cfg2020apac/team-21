@@ -22,11 +22,11 @@ export default function Login() {
                             <form>
                                 <div className="form-group">
                                     <label>User Name</label>
-                                    <input type="text" className="form-control" placeholder="User Name" />
+                                    <input type="text" className="form-control" placeholder="User Name" required/>
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
-                                    <input type="password" className="form-control" placeholder="Password" />
+                                    <input type="password" className="form-control" placeholder="Password" required/>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="exampleRadios" id="volunteer" value="volunteer" onClick={() => {setPath('/volunteer')}}/>
