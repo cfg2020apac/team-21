@@ -1,3 +1,3 @@
 # team-21
 
-Please go to "Master branch"
+Please type "git checkout master" to switch branch
