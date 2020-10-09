@@ -7,117 +7,66 @@ import {
 } from "react-router-dom";
 import './chat.css'
 import axios from 'axios'
-import { VegaLite } from 'react-vega';
-const barchart1 = {
-    spec: {
-        width: 300,
-        height: 200,
-        mark: 'bar',
-        encoding: {
-            x: { field: 'a', type: 'ordinal' },
-            y: { field: 'b', type: 'quantitative' },
-        },
-        data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
+import DataTable from 'react-data-table-component';
+const data = [{ id: 1, title: 'Conan the Barbarian', year: '1982' }];
+// {
+//     "id": "97",
+//     "first_name": "Chia",
+//     "last_name": "Kellerman",
+//     "interests": "Food Assistance",
+//     "gender": "male",
+//     "phonenumber": "83964773",
+//     "job_skill": "Administrative/General Office Support",
+//     "age": "12",
+//     "language": "English"
+// },
+const columns = [
+    {
+        name: 'ID',
+        selector: 'id',
+        sortable: true,
     },
-    data: {
-        table: [
-            { a: 'Hunger & homelessness', b: 146 },
-            { a: 'Elderly', b: 77 },
-            { a: 'Environmental education; Hunger & homelessness', b: 47 },
-            { a: 'Animals', b: 43 },
-            { a: 'Children and youth; Elderly; Hunger & homelessness', b: 36 },
-            { a: 'Children and youth; People with disabilities', b: 21 },
-            { a: 'Environmental education', b: 14 },
-            { a: 'Hungers and homeless', b: 14 },
-            { a: 'Children and youth', b: 13 },
-            { a: 'People with disabilities; People with mental illness', b: 12 },
-            { a: 'Children and youth; Environmental education', b: 11 },
-            { a: 'Integrated', b: 7 },
-            { a: 'Elderly; People with illness', b: 6 },
-            { a: 'Children and youth; Ethnic minorities', b: 4 },
-            { a: 'Children and youth; Ethnic minorities', b: 2 },
-            { a: 'Women', b: 2 },
-            { a: 'Environmental education; Integrated', b: 2 },
-            { a: 'Adults; Children and youth; Elderly', b: 2 },
-            { a: 'Environmental education; Women', b: 1 },
-            { a: 'Adults; Elderly; Environmental education', b: 1 },
-            { a: 'Children and youth; Refugees and asylum seekers', b: 1 },
-            { a: 'Refugees and asylum seekers', b: 1 },
-            { a: 'Adults; Children and youth; Elderly; People with disabilities', b: 1 },
-            { a: 'People with mental illness', b: 1 }
-
-        ],
-    }
-
-}
-
-const piechart = {
-    spec: {
-        mark: 'arc',
-        encoding: {
-            "theta": { "field": "value", "type": "quantitative" },
-            "color": { "field": "Language", "type": "nominal" }
-        },
-        data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
-        "view": { "stroke": null }
-    }, data: {
-        table: [
-            { "Language": "English", "value": 39 },
-            { "Language": "Mandarin", "value": 23 },
-            { "Language": "Cantonese", "value": 28 }
-        ],
-    }
-}
-
-
-
-const barchart2 = {
-    data: {
-        table: [
-            { a: 'Yuen Long', b: 32 },
-            { a: 'North', b: 66 },
-            { a: 'Tai Po', b: 142 },
-            { a: 'Central & Western', b: 50 },
-            { a: 'Kowloon City', b: 171 },
-            { a: 'Islands', b: 119 },
-            { a: 'Sha Tin', b: 56 },
-            { a: 'Sham Shui Po', b: 118 },
-            { a: 'Kwai Tsing', b: 86 },
-            { a: 'Sai Kung', b: 72 },
-            { a: 'Wong Tai Sin', b: 97 },
-            { a: 'Yau Tsim Mong', b: 88 },
-            { a: 'Tsuen Mun', b: 72 },
-            { a: 'Southern', b: 91 },
-            { a: 'Kwun Tong', b: 57 },
-            { a: 'Wan Chai', b: 31 },
-            { a: 'Eastern', b: 60 }
-
-        ]
+    {
+        name: 'First Name',
+        selector: 'first_name',
+        sortable: true,
     },
-    spec: {
-        width: 300,
-        height: 100,
-        mark: 'bar',
-        encoding: {
-            x: { field: 'a', type: 'ordinal' },
-            y: { field: 'b', type: 'quantitative' },
-        },
-        data: { name: 'table' }, // note: vega-lite data attribute is a plain object instead of an array
+    {
+        name: 'Last Name',
+        selector: 'last_name',
+        sortable: true,
+    },
+    {
+        name: 'interests',
+        selector: 'interests',
+        sortable: true,
+    },
+    {
+        name: 'Gender',
+        selector: 'gender',
+        sortable: true,
+    },
+    {
+        name: 'Phone Number',
+        selector: 'phonenumber',
+        sortable: true,
+    },
+    {
+        name: 'Job Skill',
+        selector: 'job_skill',
+        sortable: true,
+    },
+    {
+        name: 'Age',
+        selector: 'age',
+        sortable: true,
+    },
+    {
+        name: 'Language',
+        selector: 'language',
+        sortable: true,
     }
-
-}
-
-
-// const pieData = {
-//     table: [
-//         { a: 'English', b: 39 },
-//         { a: 'Mandarin', b: 33 },
-//         { a: 'Cantonese', b: 28 }
-//     ],
-// }
-
-
-
+];
 const initEvent = {
     age_range: "old",
     end_date: "2020/3/11",
@@ -129,24 +78,28 @@ const initEvent = {
     start_date: "2020/3/10",
     status: "pending"
 }
-
-export default function AdminDashboard() {
+export default function AdminVolunteer() {
     const [events, setEvents] = useState([]);
+    const [volunteers, setVolunteers] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(initEvent)
     const [msg, setMsg] = useState('')
-    const [command, setCommand] = useState('')
-    const [showbar, setShowBar] = useState(false)
-    const [showpie, setShowPie] = useState(false)
     useEffect(async () => {
         const result = await axios.get(
             'http://localhost:8000/event',
         );
 
+
+        const result2 = await axios.get(
+            'http://localhost:8000/volunteer',
+        );
+
         console.log(result.data)
+        console.log(result2.data)
         setEvents(result.data)
+        setVolunteers(result2.data)
     }, []);
-    const updateCommand = (id) => {
-        if (msg === 'approve') {
+    const updateEvent = (id) => {
+        if (msg === 'yes') {
             console.log("update")
             alert("Approved!!")
             selectedEvent.status = "approved"
@@ -155,10 +108,7 @@ export default function AdminDashboard() {
                     events[i].status = "approved"
                 }
             }
-            setSelectedEvent({ ...selectedEvent })
-            setEvents([...events])
-
-        } else if (msg === 'disapprove') {
+        } else if (msg === 'no') {
             alert("Disapproved!!")
             console.log("sorry")
             selectedEvent.status = "disapproved"
@@ -167,19 +117,10 @@ export default function AdminDashboard() {
                     events[i].status = "disapproved"
                 }
             }
-            setSelectedEvent({ ...selectedEvent })
-            setEvents([...events])
-
-        } else if (msg == 'showbar') {
-            setShowBar(true)
-        } else if (msg == 'showpie') {
-            setShowPie(true)
-        } else if (msg == 'clear') {
-            setShowPie(false)
-            setShowBar(false)
         }
+        setSelectedEvent({ ...selectedEvent })
+        setEvents([...events])
         setMsg('')
-
 
     }
     return (
@@ -272,37 +213,30 @@ export default function AdminDashboard() {
     status: "pending"
 } */}
                     {/* Reciever Message*/}
+                    <div className="media w-100 ml-auto mb-3">
+                        <div className="media-body" style={{ overflow: 'scroll', maxHeight: '500px' }}>
+                            <DataTable
+                                title="Current Volunteers"
+                                columns={columns}
+                                data={volunteers}
+                            />
+                        </div>
+                    </div>
+                    {/* Sender Message*/}
                     <div className="media w-50 mb-3"><img src={require('../assets/images/Logo.png')} alt="user" width={50} className="rounded-circle" />
                         <div className="media-body ml-3">
                             <div className="bg-light rounded py-2 px-3 mb-2">
-                                <p className="text-small mb-0 text-muted">Please type chart name to show the dashboard!!</p>
+                                <p className="text-small mb-0 text-muted">The above is volunteer detail! you can sort by each column!</p>
                             </div>
                             <p className="small text-muted">12:00 PM | Aug 13</p>
                         </div>
                     </div>
-                    {/* <div className="media w-100 ml-auto mb-3">
-                        <div className="media-body">
-                            <div className="bg-primary rounded py-2 px-3 mb-2">
-                                <strong style={{ color: 'white' }}>Selected Event:</strong>
-                                <p className="text-small mb-0 text-white">Sample Event {selectedEvent.id} by {selectedEvent.ngo_name}: {selectedEvent.location}, {selectedEvent.job_skill}, At most {selectedEvent.maximum_attendance} people ({selectedEvent.age_range})</p>
-                            </div>
-                            <p className="small text-muted">{selectedEvent.start_date} ~ {selectedEvent.end_date} </p>
-                        </div>
-                    </div> */}
-                    {(showbar) ? <span> <VegaLite spec={barchart1.spec} data={barchart1.data} />
-                        <VegaLite spec={barchart2.spec} data={barchart2.data} /></span> : null}
-
-
-
-                    {(showpie) ? <span> <VegaLite spec={piechart.spec} data={piechart.data} />
-                    </span> : null}
-
 
                     <form action="#" className="bg-light" style={{ 'width': '95%', 'position': 'absolute', 'bottom': '50px' }}>
                         <div className="input-group">
                             <input type="text" placeholder="Type a message" aria-describedby="button-addon2" className="form-control rounded-0 border-0 py-4 bg-light" value={msg} onChange={(e) => { setMsg(e.target.value) }} />
                             <div className="input-group-append">
-                                <button id="button-addon2" className="btn btn-link"> <i className="fa fa-paper-plane" onClick={() => { updateCommand(selectedEvent.id) }} /></button>
+                                <button id="button-addon2" className="btn btn-link"> <i className="fa fa-paper-plane" onClick={() => { updateEvent(selectedEvent.id) }} /></button>
                             </div>
                         </div>
                     </form>

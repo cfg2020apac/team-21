@@ -62,11 +62,14 @@ export default function Admin() {
                 <div className="bg-white">
                     <div className="navbar" style={{ 'overflow': 'scroll', 'height': '100vh', 'margin-left': '5px' }}>
                         <div className="panel">
-                            <a class='item'><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin/dashboard" component="a" className="item fa fa-bar-chart fa-2x"></Link>
+
                             <hr></hr>
-                            <a class='item'><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin" component="a" className="item fa fa-cog fa-2x"></Link>
+
                             <hr></hr>
-                            <a class='item'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
+                            <Link to="/admin/volunteer" component="a" className="item fa fa-users fa-2x"></Link>
+
                         </div>
 
 
@@ -86,7 +89,7 @@ export default function Admin() {
                     <div className="messages-box" style={{ 'overflow': 'scroll', 'height': '90vh' }}>
                         <div className="list-group rounded-0">
                             <a className="list-group-item list-group-item-action active text-white rounded-0">
-                                <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                                <div className="media"><img src={require('../assets/images/Logo.png')} alt="user" width={50} className="rounded-circle" />
                                     <div className="media-body ml-4">
                                         <div className="d-flex align-items-center justify-content-between mb-1">
                                             <h6 className="mb-0">Hi! There</h6><small className="small font-weight-bold">25 Dec</small>
@@ -108,7 +111,7 @@ export default function Admin() {
 
                             {events.map(e =>
                                 <a key={e.id} href="#" className="list-group-item list-group-item-action list-group-item-light rounded-0" style={e.status == 'approved' ? { backgroundColor: '#007bff', color: 'white' } : {}} onClick={() => setSelectedEvent(e)}>
-                                    <div className="media"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                                    <div className="media"><img src={require('../assets/images/'+e.ngo_name+'.png')} alt="user" width={50} className="rounded-circle" />
                                         <div className="media-body ml-4">
                                             <div className="d-flex align-items-center justify-content-between mb-1">
                                                 <h6 className="mb-0">Sample Event - {e.status}</h6><small className="small font-weight-bold">{e.start_date}</small>
@@ -152,7 +155,7 @@ export default function Admin() {
                         </div>
                     </div>
                     {/* Sender Message*/}
-                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                    <div className="media w-50 mb-3"><img src={require('../assets/images/'+selectedEvent.ngo_name+'.png')} alt="user" width={50} className="rounded-circle" />
                         <div className="media-body ml-3">
                             <div className="bg-light rounded py-2 px-3 mb-2">
                                 <p className="text-small mb-0 text-muted">The above is event detail! you wanna approve?</p>

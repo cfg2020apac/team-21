@@ -11,21 +11,21 @@ import {
 } from "react-router-dom";
 
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to='/login' />
-  )} />
-)
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={(props) => (
+//     fakeAuth.isAuthenticated === true
+//       ? <Component {...props} />
+//       : <Redirect to='/login' />
+//   )} />
+// )
 
 export default function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login" component={Login}></Route>
+        <Route path="/login" component={Login}></Route>
         {/* <Route exact path="/" component={Main}></Route> */}
-        <PrivateRoute path='/' component={Main} />
+        <Route path='/' component={Main} ></Route>
       </Switch>
     </Router>
   );
