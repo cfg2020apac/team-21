@@ -11,7 +11,7 @@ import axios from 'axios'
 
 export default function AdminVolunteer() {
     const [events, setEvents] = useState([]);
-    const [selectedEvent, setSelectedEvent] = useState({ "id": "", "ngo_name": "" })
+    const [selectedEvent, setSelectedEvent] = useState({ "id": "", "ngo_name": "Logo" })
     const [showing, setShowing] = useState(false);
 
     useEffect(async () => {
