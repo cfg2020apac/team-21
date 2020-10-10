@@ -47,7 +47,7 @@ export default function Login() {
                                     </label>
                                 </div>
                                 <Link to={path} component="a" className="btn btn-primary pink ml-1">Login</Link>
-                                <Link to='/' component="a" className="btn btn-seconary pink ml-1">Register</Link>
+                                <Link to='/register' component="a" className="btn btn-seconary pink ml-1">Register</Link>
                                 {/*<Link to="/registration" component="a" className="btn btn-secondary pink">Register</Link>*/}
                             </form>
 
