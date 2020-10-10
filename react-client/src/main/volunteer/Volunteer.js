@@ -81,7 +81,7 @@ export default function AdminVolunteer() {
             <div className="col-sm-8" >
                 <div className="px-4 py-5 chat-box bg-white navbar" style={{ 'height': '100vh' }}>
                     {/* Sender Message*/}
-                    <div className="media w-50 mb-3"><img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width={50} className="rounded-circle" />
+                    <div className="media w-50 mb-3"><img src={require('../assets/images/' + selectedEvent.ngo_name + '.png')} alt="user" width={50} className="rounded-circle" />
                         <div className="media-body ml-3">
                             <div className="bg-light rounded py-2 px-3 mb-2">
                                 <h5>event_name_{selectedEvent.id}
